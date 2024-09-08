@@ -7,32 +7,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(), // Call the AppBar builder method
+      backgroundColor: Colors.white,
       body: Column(
+        // make this code readable here by extracting the method
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 40, left: 30, right: 30),
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xff1D1617).withOpacity(0.11),
-                  blurRadius: 40,
-                  spreadRadius: 0.0
-                )
-              ]
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding: EdgeInsets.all(15),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none
-                )
-              ),
-            ),
-          )
+          searchBar(),
         ],
       ),
     );
@@ -53,10 +33,10 @@ class HomePage extends StatelessWidget {
       centerTitle: true,
       leading: GestureDetector(
         onTap: () {
-
+          // Handle tap on the leading icon
         },
         child: Container(
-          margin: const EdgeInsets.all(10),
+          margin: const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 10),
           alignment: Alignment.center,
           height: 40,
           width: 40,
@@ -90,4 +70,70 @@ class HomePage extends StatelessWidget {
       ],
     );
   }
+  Widget searchBar() {
+    return Container(
+      margin: const EdgeInsets.only(top: 40, left: 30, right: 30), // Margin for the container
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xff1D1617).withOpacity(0.11), // Shadow color with opacity
+            blurRadius: 40,
+            spreadRadius: 0.0,
+          ),
+        ],
+      ),
+      child: TextField(
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.all(15),
+          hintText: 'Search Pav Bhaji',
+          hintStyle: const TextStyle(
+            color: Color(0xffDDDADA),
+            fontSize: 17,
+          ),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(8),
+            child: SizedBox(
+              width: 20, // Set the desired width
+              height: 20, // Set the desired height
+              child: SvgPicture.asset("assets/icons/search.svg"), // Icon asset
+            ),
+          ),
+          suffixIcon: SizedBox(
+            // Remove width from Container
+            width: 100,
+            child: IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  // Add a vertical line using VerticalDivider
+                  const VerticalDivider(
+                    color: Colors.black,
+                    indent: 10,
+                    endIndent: 10,
+                    thickness: 1,
+                  ),
+                  // Ensure the Padding widget is correctly closed
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 20, // Set the desired width
+                      height: 20, // Set the desired height
+                      child: SvgPicture.asset("assets/icons/cross.svg"),
+                    ),
+                  ), // Ensure the Padding widget is correctly closed
+                ],
+              ),
+            ),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15), // Makes the border curved
+            borderSide: BorderSide.none, // Removes the border
+          ),
+        ),
+      ),
+    );
+  }
 }
+
