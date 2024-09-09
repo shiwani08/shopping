@@ -13,8 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      //theme: ThemeData(fontFamily: 'Poppins'),
-      home: HomePage(),
+      home: HomePage()
     );
   }
 }
